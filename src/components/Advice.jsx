@@ -5,7 +5,12 @@ import dice from "../assets/icon-dice.svg";
 import { motion } from "framer-motion";
 function Advice({ advice, click }) {
   return (
-    <div className="container-advice">
+    <motion.div 
+    initial={{ opacity: 0, scale: .5}}
+    animate={{ opacity: 1, scale: 1}}
+    exit={{opacity: 0}}
+    transition={{ delay: .5 ,duration: .3, type: 'tween' }}
+    className="container-advice">
       <div className="content">
         <p className="advice-number">ADVICE #{advice.id}</p>
 
@@ -28,7 +33,7 @@ function Advice({ advice, click }) {
           <img src={dice} alt="dice" />
         </button>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

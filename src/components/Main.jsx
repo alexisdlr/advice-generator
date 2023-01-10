@@ -1,5 +1,6 @@
 import { AnimatePresence } from "framer-motion";
 import React, { useEffect, useState } from "react";
+import { ProgressBar } from "react-loader-spinner";
 import { makeRequest } from "../axios";
 import Advice from "./Advice";
 
@@ -34,7 +35,15 @@ function Main() {
   return (
     <div className="Main">
        {loading ? (
-        <h1>loading ...</h1>
+        <ProgressBar
+        height="80"
+        width="80"
+        ariaLabel="progress-bar-loading"
+        wrapperStyle={{}}
+        wrapperClass="progress-bar-wrapper"
+        borderColor = 'hsl(150, 55%, 53%) '
+        barColor = '#fff'
+      />
       ) : (
         <AnimatePresence>
         <Advice advice={advice} click={handleClick} />
