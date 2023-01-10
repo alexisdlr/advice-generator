@@ -1,30 +1,48 @@
-import React, { useEffect, useState } from 'react'
-import { makeRequest } from '../axios'
-import Advice from './Advice'
+import { AnimatePresence } from "framer-motion";
+import React, { useEffect, useState } from "react";
+import { makeRequest } from "../axios";
+import Advice from "./Advice";
 
 //https://api.adviceslip.com/advice
 
 function Main() {
+  const [advice, setAdvice] = useState({});
+  const [loading, setLoading] = useState(false);
 
-  const [advice, setAdvice] = useState('')
-
-
-  const getAdvice =() => {
-    makeRequest.get('/advice').then(res => setAdvice(res.data.slip))
-  }
+  const getAdvice = () => {
+    setLoading(true);
+    makeRequest.get("/advice").then((res) => {
+      setAdvice(res.data.slip);
+      console.log('api', res.data.slip);
+      console.log(advice);
+      setLoading(false);
+    });
+  };
   const handleClick = () => {
-    makeRequest.get('/advice').then(res => setAdvice(res.data.slip))
-  }
+    setLoading(true);
+
+    makeRequest.get("/advice").then((res) => {
+      setAdvice(res.data.slip);
+      setLoading(false);
+    });
+  };
 
   useEffect(() => {
-    getAdvice()
-  }, [])
-  return (
-    <div className='Main'>
-      <Advice advice={advice} click={handleClick} />
+    getAdvice();
+  },[]);
 
+  return (
+    <div className="Main">
+       {loading ? (
+        <h1>loading ...</h1>
+      ) : (
+        <AnimatePresence>
+        <Advice advice={advice} click={handleClick} />
+      </AnimatePresence>
+      )} 
+   
     </div>
-  )
+  );
 }
 
-export default Main
+export default Main;
