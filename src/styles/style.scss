@@ -6,7 +6,7 @@
 //Grayish Blue: hsl(217, 19%, 38%)
 // Dark Grayish Blue: hsl(217, 19%, 24%)
 //Dark Blue: hsl(218, 23%, 16%)
-
+@import './screens.scss';
 * {
   box-sizing: border-box;
   margin: 0;
@@ -21,13 +21,20 @@ body {
   align-items: center;
 }
 
-
+.Main {
+  display: flex;
+  justify-content: center;
+}
 .container-advice {
   width: 600px;
   height: 400px;
   background-color: hsl(217, 19%, 38%);
   border-radius: 16px;
-
+  box-shadow: 1px 1px 20px 2px hsl(214, 16%, 17%);
+  @include mobile {
+    width: 80%;
+    max-height: 300px;
+  }
   .content {
     display: flex;
     flex-direction: column;
@@ -36,7 +43,9 @@ body {
     height: 100%;
     padding: 3rem;
     position: relative;
-
+    @include mobile {
+      padding: 1.5rem; 
+    }
     .advice-number {
       font-size: 12px;
       letter-spacing: 4px;
@@ -46,11 +55,13 @@ body {
       font-size: 28px;
       color: hsl(193, 38%, 86%);
       text-align: center;
+      @include mobile {
+        font-size: 22px; 
+      }
     }
 
     button {
-      border: 0;
-      
+      border: 0; 
       border-radius: 100%;
       padding: .8rem;
       background-color: hsl(150, 100%, 66%) ;
@@ -67,6 +78,9 @@ body {
       &:active {
         background-color:hsl(150, 55%, 53%) ;
       }
+      @include mobile {
+        padding: .4rem;
+      }
     }
 
 
@@ -80,6 +94,10 @@ body {
       position: absolute;
       display: block;
       z-index: 99;
+      @include mobile {
+        width: 33%;
+        bottom: 2.2rem;
+      }
     }
     
      picture::after {
@@ -91,6 +109,12 @@ body {
       bottom: 0.74rem;
       position: relative;
       display: block;
+      @include mobile {
+        width: 33%;
+        bottom: .7rem;
+        left: 1rem;
+
+      }
     }
   }
   
